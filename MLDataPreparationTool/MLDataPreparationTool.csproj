@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gpdotnet.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GPdotNET.MathStuff, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6d39bb3776ffb0e4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
