@@ -1,5 +1,5 @@
 # MLDataPrepeparationTool
-This is WinForms C# project which can import any txtual dataset, and transfom it in to ML ready Training and Testing data sets, with full support of Numerical, Binary and Category encoding, defining features and label, Data normalisation and handling Missing values.
+This is WinForms C# project which can import any textual data set, and transform it in to ML ready Training and Testing data sets, with full support of Numerical, Binary and Category encoding, defining features and label, Data normalization and handling Missing values.
 Beside general export options, the Tool supports CNTK format.
 
 ![ML Data Preparation Tool](https://bhrnjica.files.wordpress.com/2018/03/2018-03-01_9-56-25.png?w=604&h=231) 
@@ -8,9 +8,9 @@ Beside general export options, the Tool supports CNTK format.
 In order to use the Tool, .NET Framework 4.7.1 should be installed.
 
 # How to use the Tool
-1 Load any taxt data into ML Preparation Tool, by pressing Import Data button, the Import dialog will apear which can provide tha data will be imported corectly in to the Tool,
+1 Load any text data into ML Preparation Tool, by pressing Import Data button, the Import dialog will appear, by  providing guidance to successfully import data intothe Tool,
 
-2 Transform the data by providing the folowing:
+2 Transform the data by providing the following:
  * Type – each column can be:
     - Numeric – which holds continuous numeric values,
     - Binary – which indicates two class categorical data,
@@ -33,4 +33,4 @@ In order to use the Tool, .NET Framework 4.7.1 should be installed.
 
 
 
-More ifnormation can be found at https://bhrnjica.net/tag/mldataprep/ 
+More information can be found at https://bhrnjica.net/tag/mldataprep/ 
