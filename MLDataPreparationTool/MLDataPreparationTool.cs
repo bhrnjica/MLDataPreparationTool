@@ -52,6 +52,8 @@ namespace MLDataPreparationTool
                 if(options.testRows > 0)
                     exp.WriteToFile(testPath, true, options.delimiter,options.cntk);
 
+                MessageBox.Show("The data is exported successfully!");
+
             }
             catch (Exception ex)
             {
