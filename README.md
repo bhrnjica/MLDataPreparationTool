@@ -8,7 +8,7 @@ Beside general export options, the Tool supports CNTK format.
 In order to use the Tool, .NET Framework 4.7.1 should be installed.
 
 # How to use the Tool
-1 Load any text data into ML Preparation Tool, by pressing Import Data button, the Import dialog will appear, by  providing guidance to successfully import data intothe Tool,
+1 Load any text data into ML Preparation Tool, by pressing Import Data button, the Import dialog will appear, by  providing guidance to successfully import data into the Tool,
 
 2 Transform the data by providing the following:
  * Type – each column can be:
