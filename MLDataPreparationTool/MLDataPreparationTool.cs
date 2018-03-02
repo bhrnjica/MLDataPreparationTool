@@ -33,7 +33,7 @@ namespace MLDataPreparationTool
             {
                 //create full dataset with all columns and rows
                 var options = optionsPanel1.GetOptions();
-                var fulldata = experimentPanel2.GetDataSet();
+                var fulldata = experimentPanel1.GetDataSet();
                 //get dataset based on options 
                 var ds = fulldata.GetDataSet(options.randomize);
                 ds.TestRows = options.testRows;
@@ -69,9 +69,18 @@ namespace MLDataPreparationTool
             {
                 if (dlg.Data == null)
                     return;
-                experimentPanel2.FillDataGrid(dlg.Header, dlg.Data);
+                experimentPanel1.FillDataGrid(dlg.Header, dlg.Data);
             }
         }
-
+        /// <summary>
+        /// About Tool
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dlg = new MLDataPreparation.Dll.AboutBox();
+            dlg.ShowDialog();
+        }
     }
 }

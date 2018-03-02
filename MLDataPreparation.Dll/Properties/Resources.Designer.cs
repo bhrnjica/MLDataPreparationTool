@@ -59,15 +59,5 @@ namespace MLDataPreparation.Dll.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon gpdotnet {
-            get {
-                object obj = ResourceManager.GetObject("gpdotnet", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
     }
 }

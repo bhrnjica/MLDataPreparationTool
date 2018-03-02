@@ -35,28 +35,35 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.experimentPanel2 = new MLDataPreparation.Dll.ExperimentPanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.experimentPanel1 = new MLDataPreparation.Dll.ExperimentPanel();
             this.optionsPanel1 = new MLDataPreparation.Dll.OptionsPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.experimentPanel2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.optionsPanel1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.experimentPanel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.optionsPanel1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(843, 464);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(843, 440);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel1
@@ -118,25 +125,74 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.ImportData_Click);
             // 
-            // experimentPanel2
+            // menuStrip1
             // 
-            this.experimentPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.experimentPanel2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.experimentPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.experimentPanel2.Location = new System.Drawing.Point(3, 68);
-            this.experimentPanel2.Name = "experimentPanel2";
-            this.experimentPanel2.Size = new System.Drawing.Size(837, 283);
-            this.experimentPanel2.TabIndex = 0;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(843, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importToolStripMenuItem,
+            this.exportToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.importToolStripMenuItem.Text = "&Import";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.ImportData_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "&About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.exportToolStripMenuItem.Text = "&Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.ExportToML_Click);
+            // 
+            // experimentPanel1
+            // 
+            this.experimentPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.experimentPanel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.experimentPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.experimentPanel1.Location = new System.Drawing.Point(3, 68);
+            this.experimentPanel1.Name = "experimentPanel1";
+            this.experimentPanel1.Size = new System.Drawing.Size(837, 259);
+            this.experimentPanel1.TabIndex = 3;
             // 
             // optionsPanel1
             // 
             this.optionsPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.optionsPanel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.optionsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.optionsPanel1.Location = new System.Drawing.Point(3, 357);
+            this.optionsPanel1.Location = new System.Drawing.Point(3, 333);
             this.optionsPanel1.Name = "optionsPanel1";
             this.optionsPanel1.Size = new System.Drawing.Size(837, 104);
-            this.optionsPanel1.TabIndex = 1;
+            this.optionsPanel1.TabIndex = 4;
             // 
             // MLDataPreparationTool
             // 
@@ -144,7 +200,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 464);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(539, 404);
             this.Name = "MLDataPreparationTool";
@@ -152,12 +210,15 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private MLDataPreparation.Dll.ExperimentPanel experimentPanel2;
+        private MLDataPreparation.Dll.ExperimentPanel experimentPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MLDataPreparation.Dll.OptionsPanel optionsPanel1;
         private System.Windows.Forms.Panel panel1;
@@ -165,6 +226,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
     }
 }
 

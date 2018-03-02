@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MLDataPreparation.Dll")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Machine Learning Data Preparation Tool transforms any textual data set in to ML ready data set including, category encoding, missing values handling and data scaling.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MLDataPreparation.Dll")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCompany("Bahrudin Hrnjica")]
+[assembly: AssemblyProduct("Machine Learning Data Preparation Tool")]
+[assembly: AssemblyCopyright("bhrnjica@hotmail.com, Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

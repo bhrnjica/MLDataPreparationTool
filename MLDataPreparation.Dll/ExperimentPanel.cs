@@ -191,7 +191,6 @@ namespace MLDataPreparation.Dll
                 return;
             int numCol = data[0].Length;
             int numRow = data.Length;
-            ListViewItem LVI;
             //
             setDefaultColumns(header, numCol);
 
@@ -202,7 +201,7 @@ namespace MLDataPreparation.Dll
        
 
         /// <summary>
-        /// Handling double mouse click for changing MetaData infor of the loaded data columns
+        /// Handling double mouse click for changing MetaData info of the loaded data columns
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
