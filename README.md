@@ -4,6 +4,9 @@ Beside general export options, the Tool supports CNTK format.
 
 ![ML Data Preparation Tool](https://bhrnjica.files.wordpress.com/2018/03/2018-03-01_9-56-25.png?w=604&h=231) 
 
+# System Requirements
+In order to use the Tool, .NET Framework 4.7 should be installed.
+
 # How to use the Tool
 1 Load any taxt data into ML Preparation Tool, by pressing Import Data button, the Import dialog will apear which can provide tha data will be imported corectly in to the Tool,
 
