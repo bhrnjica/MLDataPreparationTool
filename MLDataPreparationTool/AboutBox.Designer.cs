@@ -1,4 +1,4 @@
-﻿namespace MLDataPreparation.Dll
+﻿namespace MLDataPreparation.Tool
 {
     partial class AboutBox
     {

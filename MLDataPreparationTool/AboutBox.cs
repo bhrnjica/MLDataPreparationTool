@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MLDataPreparation.Dll
+namespace MLDataPreparation.Tool
 {
     public partial class AboutBox : Form
     {

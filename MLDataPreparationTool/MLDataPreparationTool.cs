@@ -1,5 +1,6 @@
 ﻿using GPdotNet.MLBasicTypes;
 using MLDataPreparation.Dll;
+using MLDataPreparation.Tool;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -81,7 +82,7 @@ namespace MLDataPreparationTool
         /// <param name="e"></param>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dlg = new MLDataPreparation.Dll.AboutBox();
+            var dlg = new AboutBox();
             dlg.ShowDialog();
         }
     }
