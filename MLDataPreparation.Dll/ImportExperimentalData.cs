@@ -10,7 +10,6 @@
 // Bihac,Bosnia and Herzegovina                                                         //
 // http://bhrnjica.wordpress.com                                                        //
 //////////////////////////////////////////////////////////////////////////////////////////
-using MLDataPreparation.Dll;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -127,8 +126,10 @@ namespace MLDataPreparation.Dll
 
 
                 var colDelimiter = GetColumDelimiter();
+                //define the row
+                string[] rows = originData.Split(Environment.NewLine.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
-                LoadExperiment(originData, colDelimiter, checkBox1.Checked, radioButton1.Checked);
+                prepareData(rows, colDelimiter, checkBox1.Checked, radioButton1.Checked);
             }
             catch (Exception ex)
             {
@@ -152,14 +153,12 @@ namespace MLDataPreparation.Dll
         /// <param name="columDelimiter"></param>
         /// <param name="isFirstRowHeader"></param>
         /// <param name="isFloatingPoint"></param>
-        public void LoadExperiment(string strData, char[] columDelimiter, bool isFirstRowHeader, bool isFloatingPoint = true)
+        public void prepareData(string[] rowData, char[] columDelimiter, bool isFirstRowHeader, bool isFloatingPoint = true)
         {
-            //define the row
-            string[] rows = strData.Split(Environment.NewLine.ToArray(), StringSplitOptions.RemoveEmptyEntries);
-
+            
             //Define the columns
-            var colCount = rows[0].Split(columDelimiter).Count();
-            var rowCount = rows.Length;
+            var colCount = rowData[0].Split(columDelimiter).Count();
+            var rowCount = rowData.Length;
             int headerCount = 0;
             ///
             Header = null;
@@ -171,7 +170,7 @@ namespace MLDataPreparation.Dll
             //
             for (int i = 0; i < rowCount; i++)
             {
-                var row = rows[i].Split(columDelimiter);
+                var row = rowData[i].Split(columDelimiter);
 
                 //column creation for each row
                 if (i == 0 && isFirstRowHeader)
@@ -240,6 +239,108 @@ namespace MLDataPreparation.Dll
                 }
             }
             ProcesData();
+        }
+
+        private void checkBox7_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox7.Checked)
+            {
+                button2.Enabled = false;
+                button4.Enabled = true;
+                label1.Enabled = true;
+                numCtrlNumForTest.Enabled = true;
+            }
+            else
+            {
+                button2.Enabled = true;
+                button4.Enabled = false;
+                label1.Enabled = false;
+                numCtrlNumForTest.Enabled = false;
+            }
+
+        }
+
+        //import data as time series
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(textBox3.Text))
+                {
+                    MessageBox.Show("No file is selected!");
+                    return;
+                }
+
+
+                var colDelimiter = GetColumDelimiter();
+
+                if(numCtrlNumForTest.Value < 1 && numCtrlNumForTest.Value > originData.Length)
+                {
+                    MessageBox.Show("Invalid number of time leg. PLease specify the time leg between 1 and row number.");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(originData))
+                    return;
+
+                //
+                //define the row
+                string[] tdata = originData.Split(Environment.NewLine.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                //transform the time series into data frame
+                string[] prepData = prepareTimeSeriesData(tdata, (int)numCtrlNumForTest.Value);
+
+                //prepare data for loading
+                prepareData(prepData, new char[] {';'}, checkBox1.Checked, radioButton1.Checked);
+            }
+            catch (Exception ex)
+            {
+
+                reportException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Transforms the string of time series into data frame string 
+        /// </summary>
+        /// <param name="tdata"></param>
+        /// <param name="legTime"></param>
+        /// <returns></returns>
+        private string[] prepareTimeSeriesData(string[] tdata,int legTime)
+        {
+            //split data on for feature and label datasets
+            var a = new string[tdata.Length - legTime];
+            var b = new string[tdata.Length - legTime];
+
+            for (int l = 0; l < tdata.Length; l++)
+            {
+                //
+                if (l < tdata.Length - legTime)
+                    a[l] = tdata[l];
+
+                //
+                if (l >= legTime)
+                    b[l - legTime] = tdata[l];
+            }
+
+            //make arrays of data
+            var strDataFrame = new List<string>();
+            //
+            for (int i = 0; i < tdata.Length - legTime; i++)
+            {
+                //features
+                var row = new string[legTime+1];
+                int j = 0;
+                for (j = 0; j < legTime; j++)
+                    row[j] = tdata[i + j];
+
+                //label column at the end of the list
+                row[j] = tdata[i + j];
+
+                //create features row
+                strDataFrame.Add(string.Join(";",row));
+            }
+
+            return strDataFrame.ToArray();
         }
     }
 }

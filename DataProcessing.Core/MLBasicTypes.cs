@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace GPdotNet.MLBasicTypes
+namespace DataProcessing.MLBasicTypes
 {
     public enum MetaData
     {

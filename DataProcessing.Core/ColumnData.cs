@@ -10,14 +10,15 @@
 // Bihac, Bosnia and Herzegovina                                                         //
 // http://bhrnjica.wordpress.com                                                        //
 //////////////////////////////////////////////////////////////////////////////////////////
-using GPdotNet.MLBasicTypes;
+
+using GPdotNet.MathStuff;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using GPdotNet.MathStuff;
-namespace GPdotNet.MLData
+using DataProcessing.MLBasicTypes;
+namespace DataProcessing.MLData
 {
 
     /// <summary>

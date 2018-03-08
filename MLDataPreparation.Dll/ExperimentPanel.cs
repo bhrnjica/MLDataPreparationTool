@@ -16,8 +16,8 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using GPdotNet.MLData;
-using GPdotNet.MLBasicTypes;
+using DataProcessing.MLData;
+using DataProcessing.MLBasicTypes;
 
 namespace MLDataPreparation.Dll
 {

@@ -17,7 +17,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace GPdotNet.MLData
+namespace DataProcessing.MLData
 {
     public static class Extensions
     {

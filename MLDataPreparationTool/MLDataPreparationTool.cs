@@ -1,9 +1,10 @@
-﻿using GPdotNet.MLBasicTypes;
-using MLDataPreparation.Dll;
+﻿using MLDataPreparation.Dll;
 using MLDataPreparation.Tool;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using DataProcessing.MLBasicTypes;
+using DataProcessing.MLData;
 
 namespace MLDataPreparationTool
 {
@@ -40,7 +41,7 @@ namespace MLDataPreparationTool
                 ds.TestRows = options.testRows;
                 ds.IsPrecentige = options.prec;
                 //create experiment based created dataset
-                var exp = new GPdotNet.MLData.Experiment(ds);
+                var exp = new Experiment(ds);
 
                 //saving processed data in to file
                 var dirPath = Path.GetDirectoryName(fileName);
