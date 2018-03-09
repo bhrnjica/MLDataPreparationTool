@@ -116,6 +116,8 @@ namespace MLDataPreparation.Dll
             cmbBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbKeyPress);
             cmbBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBox3.Hide();
+
+            HideOptionPanel();
         }
 
        
@@ -198,7 +200,18 @@ namespace MLDataPreparation.Dll
             setData(data);
         }
 
-       
+        public void ShowOptionPanel()
+        {
+            this.tableLayoutPanel1.RowStyles.Clear();
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+        }
+        public void HideOptionPanel()
+        {
+            this.tableLayoutPanel1.RowStyles.Clear();
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
+        }
 
         /// <summary>
         /// Handling double mouse click for changing MetaData info of the loaded data columns
