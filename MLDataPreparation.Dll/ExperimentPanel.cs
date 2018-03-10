@@ -40,7 +40,8 @@ namespace MLDataPreparation.Dll
         private System.Windows.Forms.ComboBox cmbBox2 = new System.Windows.Forms.ComboBox();
         private System.Windows.Forms.ComboBox cmbBox3 = new System.Windows.Forms.ComboBox();
         private string[][] m_strData; //loaded string of data
-
+        public Action<bool> UpdateModel { get; set; }
+        public Action<bool> CreateModel { get; set; }
         public ExperimentPanel()
         {
             InitializeComponent();
@@ -200,18 +201,7 @@ namespace MLDataPreparation.Dll
             setData(data);
         }
 
-        public void ShowOptionPanel()
-        {
-            this.tableLayoutPanel1.RowStyles.Clear();
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-        }
-        public void HideOptionPanel()
-        {
-            this.tableLayoutPanel1.RowStyles.Clear();
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
-        }
+        
 
         /// <summary>
         /// Handling double mouse click for changing MetaData info of the loaded data columns
@@ -665,6 +655,53 @@ namespace MLDataPreparation.Dll
             }
         }
 
+        public void ShowOptionPanel()
+        {
+            this.tableLayoutPanel1.RowStyles.Clear();
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+        }
+        public void HideOptionPanel()
+        {
+            this.tableLayoutPanel1.RowStyles.Clear();
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
+        }
+
+        public void LoadData()
+        {
+            ImportExperimentalData dlg = new ImportExperimentalData();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                if (dlg.Data == null)
+                    return;
+                m_strData = dlg.Data;
+                FillDataGrid(dlg.Header, dlg.Data);
+            }
+        }
+
+        public void CreateNewModel()
+        {
+            try
+            {
+                if (m_strData == null || m_strData.Length < 1)
+                {
+                    MessageBox.Show("Cannot create Model from empty experiment.");
+                    return;
+
+                }
+                if (CreateModel != null)
+                {
+                    CreateModel(randomoizeDataSet.Checked);
+                    randomoizeDataSet.Checked = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ML Preparation Tool");
+            }
+        }
         #endregion
 
 

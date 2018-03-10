@@ -21,48 +21,30 @@ namespace MLDataPreparationTool
 
         private void ExportToML_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = "All files (*.*)|*.*";
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                MakeDataSets(dlg.FileName);
-            }
-        }
-
-        private void MakeDataSets(string fileName)
-        {
             try
             {
-                //create full dataset with all columns and rows
-                var options = optionsPanel1.GetOptions();
-                var fulldata = experimentPanel1.GetDataSet();
-                //get dataset based on options 
-                var ds = fulldata.GetDataSet(options.randomize);
-                ds.TestRows = options.testRows;
-                ds.IsPrecentige = options.prec;
-                //create experiment based created dataset
-                var exp = new Experiment(ds);
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Filter = "All files (*.*)|*.*";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    //create full dataset with all columns and rows
+                    var options = optionsPanel1.GetOptions();
+                    var fulldata = experimentPanel1.GetDataSet();
 
-                //saving processed data in to file
-                var dirPath = Path.GetDirectoryName(fileName);
-                var name = Path.GetFileNameWithoutExtension(fileName);
-                var ext = Path.GetExtension(fileName);
-                var trainPath = Path.Combine(dirPath, name+"_train" + ext);
-                var testPath = Path.Combine(dirPath, name + "_test" + ext);
+                    ExportData.MakeDataSets(dlg.FileName, options, fulldata);
 
-                exp.WriteToFile(trainPath, false, options.delimiter, options.cntk);
-                if(options.testRows > 0)
-                    exp.WriteToFile(testPath, true, options.delimiter,options.cntk);
-
-                MessageBox.Show("The data is exported successfully!");
-
+                   MessageBox.Show("The data is exported successfully!");
+                }
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
             }
+            
         }
+
+
 
         
 
