@@ -334,7 +334,7 @@ namespace DataProcessing.MLData
                 if (m_testData != null)
                     return m_testData.FirstOrDefault().RowCount;
             }
-
+            return 0;
             throw new Exception(testData ? "Test Data is null." : "Train Data is null.");
         }
        
@@ -369,6 +369,8 @@ namespace DataProcessing.MLData
             var data = GetData(false);
             return data.Where(x => x.IsOutput).Count();
         }
+
+        
 
         /// <summary>
         /// Get 2D array of values from all columns 
@@ -654,19 +656,7 @@ namespace DataProcessing.MLData
 
        
 
-        /// <summary>
-        /// TODO:
-        /// </summary>
-        //public IData GetInputData(double[] constants)
-        //{
-        //    var training = GetDataForGP();
-        //    var testing = GetDataForGP(true);
-        //    //
-        //    var inputs = new ExperimentData(training, testing, constants);
-        //    inputs.SetExperiment(this);
-        //    //
-        //    return inputs;
-        //}
+        
 
         public (double[][] train, double[][] test) GetInputData()
         {
