@@ -5,7 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using DataProcessing.MLBasicTypes;
 using DataProcessing.MLData;
-
+using System.Linq;
 namespace MLDataPreparationTool
 {
     public partial class MLDataPreparationTool : Form
@@ -27,6 +27,7 @@ namespace MLDataPreparationTool
         {
             try
             {
+               
                 SaveFileDialog dlg = new SaveFileDialog();
                 dlg.Filter = "All files (*.*)|*.*";
                 if (dlg.ShowDialog() == DialogResult.OK)
@@ -34,8 +35,15 @@ namespace MLDataPreparationTool
                     //create full dataset with all columns and rows
                     var options = optionsPanel1.GetOptions();
                     var fulldata = experimentPanel1.GetDataSet();
-
-                    ExportData.MakeDataSets(dlg.FileName, options, fulldata);
+                    var countOutputCol = fulldata.MetaData.Where(x => x.Param.Equals(ParameterType.Output.Description(),
+                         StringComparison.InvariantCultureIgnoreCase) && !x.IsIngored).Count();
+                   
+                    if(countOutputCol>1)
+                    {
+                        MessageBox.Show("Error: More than one output column is defined, export cannot be proceeded.");
+                        return;
+                    }
+                   ExportData.MakeDataSets(dlg.FileName, options, fulldata);
 
                    MessageBox.Show("The data is exported successfully!");
                 }

@@ -166,7 +166,12 @@ namespace MLDataPreparation.Dll
             {
                 string itemSel = combo.Items[sel].ToString();
                 li.SubItems[subItemSelected].Text = itemSel;
-                if(itemSel.Equals(ColumnType.Category.Description(),StringComparison.OrdinalIgnoreCase))
+
+                //
+                var colType = listView1.Items[1].SubItems[subItemSelected];
+                var parType = listView1.Items[3].SubItems[subItemSelected];
+
+                if (itemSel.Equals(ColumnType.Category.Description(),StringComparison.OrdinalIgnoreCase))
                 {
                     //
                     addCategoryEncoding();
@@ -186,6 +191,13 @@ namespace MLDataPreparation.Dll
                     addNoEncoding();
 
                     listView1.Items[2].SubItems[subItemSelected].Text = CategoryEncoding.None.Description(); 
+                }
+                else if(parType.Text.Equals(ParameterType.Output.Description(), StringComparison.OrdinalIgnoreCase))
+                {
+                    if (colType.Text.Equals(ColumnType.Binary.Description(), StringComparison.OrdinalIgnoreCase))
+                        listView1.Items[2].SubItems[subItemSelected].Text = DefaultBEncoding.Description();
+                    else if (colType.Text.Equals(ColumnType.Category.Description(), StringComparison.OrdinalIgnoreCase))
+                        listView1.Items[2].SubItems[subItemSelected].Text = DefaultCEncoding.Description();
                 }
 
             }
