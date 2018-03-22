@@ -242,8 +242,8 @@ namespace MLDataPreparation.Dll
                 combo = cmbBox;
             else if (row == 2)
             {
-                //loking category encoding is related only for Output column since the ceolumn determines the ML type
-                if(LockEncoding==false || !colType.Text.Equals("output",StringComparison.InvariantCultureIgnoreCase))
+                //locking category encoding is related only for Output column since the column determines the ML type
+                if(!(LockEncoding==true && colType.Text.Equals("output",StringComparison.InvariantCultureIgnoreCase)))
                 {
                     if (listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Binary.Description(), StringComparison.OrdinalIgnoreCase))
                     {
