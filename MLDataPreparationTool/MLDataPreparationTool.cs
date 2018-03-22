@@ -16,6 +16,10 @@ namespace MLDataPreparationTool
         public MLDataPreparationTool()
         {
             InitializeComponent();
+            //experimentPanel1.LockEncoding = false;
+            //experimentPanel1.DefaultBEncoding = CategoryEncoding.Binary1;
+            //experimentPanel1.DefaultBEncoding = CategoryEncoding.OneHot;
+
             optionsPanel1.button1.Click += ExportToML_Click;
         }
 

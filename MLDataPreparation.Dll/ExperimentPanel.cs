@@ -42,6 +42,19 @@ namespace MLDataPreparation.Dll
         private string[][] m_strData; //loaded string of data
         public Action<bool> UpdateModel { get; set; }
         public Action<bool> CreateModel { get; set; }
+        /// <summary>
+        /// Default Encoding value for Binary column type
+        /// </summary>
+        public CategoryEncoding DefaultBEncoding { get; set; }
+        /// <summary>
+        /// Default Encoding value for Category column type
+        /// </summary>
+        public CategoryEncoding DefaultCEncoding { get; set; }
+        /// <summary>
+        /// Locks the encoding option, so only default value can be set
+        /// </summary>
+        public bool LockEncoding { get; set; }
+
         public ExperimentPanel()
         {
             InitializeComponent();
@@ -119,6 +132,10 @@ namespace MLDataPreparation.Dll
             cmbBox3.Hide();
 
             HideOptionPanel();
+            //default encoding values
+            DefaultBEncoding = CategoryEncoding.Binary1;
+            DefaultCEncoding = CategoryEncoding.OneHot;
+
         }
 
        
@@ -153,15 +170,15 @@ namespace MLDataPreparation.Dll
                 {
                     //
                     addCategoryEncoding();
-
-                    listView1.Items[2].SubItems[subItemSelected].Text = CategoryEncoding.Level.Description();
+                    
+                    listView1.Items[2].SubItems[subItemSelected].Text = DefaultCEncoding.Description();
                 }
                 else if(itemSel.Equals(ColumnType.Binary.Description(), StringComparison.OrdinalIgnoreCase))
                 {
                     //
                     addBinaryEncoding();
 
-                    listView1.Items[2].SubItems[subItemSelected].Text = CategoryEncoding.Binary1.Description();
+                    listView1.Items[2].SubItems[subItemSelected].Text = DefaultBEncoding.Description();
                 }
                 else if (itemSel.Equals(ColumnType.Numeric.Description(), StringComparison.OrdinalIgnoreCase) 
                     || itemSel.Equals(ColumnType.Unknown.Description(), StringComparison.OrdinalIgnoreCase))
@@ -213,7 +230,7 @@ namespace MLDataPreparation.Dll
             ListViewHitTestInfo info = listView1.HitTest(X, Y);
             var row = info.Item.Index;
             var col = info.Item.SubItems.IndexOf(info.SubItem);
-
+            var colType = listView1.Items[3].SubItems[col];
             li = info.Item;
             subItemSelected = col;
             //only first and second Row process the mouse input 
@@ -225,22 +242,25 @@ namespace MLDataPreparation.Dll
                 combo = cmbBox;
             else if (row == 2)
             {
+                //loking category encoding is related only for Output column since the ceolumn determines the ML type
+                if(LockEncoding==false || !colType.Text.Equals("output",StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Binary.Description(), StringComparison.OrdinalIgnoreCase))
+                    {
+
+                        addBinaryEncoding();
+                    }
+                    else if (listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Category.Description(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        addCategoryEncoding();
+
+                    }
+
+                    if (listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Category.Description(), StringComparison.OrdinalIgnoreCase) ||
+                        listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Binary.Description(), StringComparison.OrdinalIgnoreCase))
+                        combo = cmbBox11;
+                }
                 
-
-                if (listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Binary.Description(), StringComparison.OrdinalIgnoreCase))
-                {
-
-                    addBinaryEncoding();
-                }
-                else if (listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Category.Description(), StringComparison.OrdinalIgnoreCase))
-                {
-                    addCategoryEncoding();
-                    
-                }
-
-                if (listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Category.Description(), StringComparison.OrdinalIgnoreCase) ||
-                    listView1.Items[1].SubItems[subItemSelected].Text.Equals(ColumnType.Binary.Description(), StringComparison.OrdinalIgnoreCase))
-                    combo = cmbBox11;
             }
             else if (row == 3)
             {
